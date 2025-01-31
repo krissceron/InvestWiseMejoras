@@ -7,7 +7,9 @@ namespace InvestWiseProyecto.DataConnection
 {
     public class ReportePorcGananciaConnection
     {
-        private string cadena = CadenaConexion.RetornaCadenaConexion();
+        //private string cadena = CadenaConexion.RetornaCadenaConexion();
+        private string cadena = CadenaConexion.Instancia.ObtenerCadenaConexion();
+
 
         public List<ReporteGananciaUsuario> ObtenerReporteGananciaUsuarios()
         {

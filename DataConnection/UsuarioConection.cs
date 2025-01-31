@@ -11,7 +11,9 @@ namespace InvestWiseProyecto.Data
     public class UsuarioConection : IUsuarioRepository
     {
         //private string cadena = CadenaConexion.RetornaCadenaConexion();
-        private readonly string cadena = CadenaConexion.RetornaCadenaConexion();//KC
+        //private readonly string cadena = CadenaConexion.RetornaCadenaConexion();//KC
+        private string cadena = CadenaConexion.Instancia.ObtenerCadenaConexion();
+
 
         //INSERTAR USUARIO
         public Respuesta InsertarUsuario(Usuario usuario)
@@ -325,7 +327,7 @@ namespace InvestWiseProyecto.Data
         //    }
 
         //    return list;
-        //}esta en datatablehelper
+        //}//esta en datatablehelper
 
         //private bool EsCorreoValido(string correo)
         //{

@@ -7,10 +7,12 @@ using System.Data.SqlClient;
 
 namespace InvestWiseProyecto.DataConnection
 {
-    public class CategoriaConnection { 
-    private string cadena = CadenaConexion.RetornaCadenaConexion();
+    public class CategoriaConnection {
+        private string cadena = CadenaConexion.Instancia.ObtenerCadenaConexion();
 
-    public Respuesta ObtenerCategoria()
+        //private string cadena = CadenaConexion.RetornaCadenaConexion();
+
+        public Respuesta ObtenerCategoria()
     {
         int resultado;
         Respuesta respuesta = new Respuesta();

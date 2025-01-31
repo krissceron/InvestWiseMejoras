@@ -1,6 +1,7 @@
 using InvestWiseProyecto.Data;
 using InvestWiseProyecto.DataConnection;
-
+using InvestWiseProyecto.Factory;
+using InvestWiseProyecto.Interface;
 using InvestWiseProyecto.Model;
 using InvestWiseProyecto.Repository;
 using InvestWiseProyecto.Service;
@@ -12,6 +13,9 @@ builder.Services.AddScoped<IRolRepository, RolConnection>();
 builder.Services.AddScoped<RolService>();
 builder.Services.AddScoped<IPropuestaRepository, PropuestaConnection>();
 builder.Services.AddScoped<PropuestaService>();
+builder.Services.AddScoped<IProductoFactory, ProductoFactory>();
+builder.Services.AddScoped<ProductoConnection>();
+
 
 
 

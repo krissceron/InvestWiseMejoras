@@ -10,7 +10,8 @@ namespace InvestWiseProyecto.Service
 
         public ReportePorcGananPorUsuService()
         {
-            _cadenaConexion = CadenaConexion.RetornaCadenaConexion();
+            //_cadenaConexion = CadenaConexion.RetornaCadenaConexion();
+            _cadenaConexion = CadenaConexion.Instancia.ObtenerCadenaConexion();
         }
         public List<object> GenerarReportePorUsuario(int idUsuario)
         {

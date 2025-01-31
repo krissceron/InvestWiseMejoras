@@ -1,18 +1,28 @@
 ﻿namespace InvestWiseProyecto.Connection
 {
-    public class CadenaConexion
+    
+    public sealed class CadenaConexion
     {
-        //private static string servidor = @"camilacabrera.database.windows.net";
-        private static string servidor = @"investwiseserver.database.windows.net";
-        private static string base_tip = "InvestWise";
-        private static string usuario = "userWise12";
-        private static string password = "1q@2w@3e@";
-        //private static string usuario = "sa";
-        //private static string password = "sasa";
-        public static string RetornaCadenaConexion()
-        {
+        private static readonly Lazy<CadenaConexion> instancia =
+            new Lazy<CadenaConexion>(() => new CadenaConexion());
 
-            return "Data Source=" + servidor + ";Initial Catalog=" + base_tip + ";User ID=" + usuario + ";Password=" + password;
+        private string cadenaConexion;
+
+        private CadenaConexion()
+        {
+            string servidor = @"investwiseserver.database.windows.net";
+            string base_tip = "InvestWise";
+            string usuario = "userWise12";
+            string password = "1q@2w@3e@";
+
+            cadenaConexion = $"Data Source={servidor};Initial Catalog={base_tip};User ID={usuario};Password={password}";
+        }
+
+        public static CadenaConexion Instancia => instancia.Value;
+
+        public string ObtenerCadenaConexion()
+        {
+            return cadenaConexion;
         }
     }
 }

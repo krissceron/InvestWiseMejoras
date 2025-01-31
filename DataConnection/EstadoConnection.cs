@@ -7,7 +7,9 @@ namespace InvestWiseProyecto.DataConnection
 {
     public class EstadoConnection
     {
-        private string cadena = CadenaConexion.RetornaCadenaConexion();
+        // private string cadena = CadenaConexion.RetornaCadenaConexion();
+        private string cadena = CadenaConexion.Instancia.ObtenerCadenaConexion();
+
         public Respuesta ObtenerEstado()
         {
             int resultado;

@@ -9,7 +9,8 @@ public class ReporteProdXCateRentablePorUsuService
 
     public ReporteProdXCateRentablePorUsuService()
     {
-        _cadenaConexion = CadenaConexion.RetornaCadenaConexion();
+        //_cadenaConexion = CadenaConexion.RetornaCadenaConexion();
+        _cadenaConexion = CadenaConexion.Instancia.ObtenerCadenaConexion();
     }
     public List<object> GenerarReportePorUsuarioPorCategoria(int idUsuario, int? idCategoria = null)
     {

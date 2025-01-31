@@ -2,16 +2,29 @@
 using InvestWiseProyecto.Model;
 using System.Data.SqlClient;
 using System.Data;
+using InvestWiseProyecto.Factory;
+using InvestWiseProyecto.Interface;
 
 namespace InvestWiseProyecto.DataConnection
 {
     public class ProductoConnection
     {
-        private string cadena = CadenaConexion.RetornaCadenaConexion();
+        //private string cadena = CadenaConexion.RetornaCadenaConexion();
+        //private string cadena = CadenaConexion.Instancia.ObtenerCadenaConexion();
+        private readonly string cadena = CadenaConexion.Instancia.ObtenerCadenaConexion();
+        private readonly IProductoFactory _productoFactory;
+        public ProductoConnection(IProductoFactory productoFactory)
+        {
+            _productoFactory = productoFactory;
+        }
+
 
         // INSERTAR PRODUCTO
-        public Respuesta InsertarProducto(Producto producto)
+        //public Respuesta InsertarProducto(Producto producto)
+        //{
+        public Respuesta InsertarProducto(int idCategoria, string nombre, string descripcion, float precio)
         {
+            IProducto producto = _productoFactory.CrearProducto("nuevo", idCategoria, nombre, descripcion, precio);
             int resultado;
             Respuesta respuesta = new Respuesta();
 
@@ -137,8 +150,12 @@ namespace InvestWiseProyecto.DataConnection
 
 
         //ACTUALIZAR PRODUCTO
-        public Respuesta ActualizarProducto(ProductoModificado productoModi)
+        //public Respuesta ActualizarProducto(ProductoModificado productoModi)
+        //{
+        public Respuesta ActualizarProducto(int idProducto, int idCategoria, string nombre, string descripcion, float precio)
         {
+            IProducto productoModi = _productoFactory.CrearProducto("modificado", idCategoria, nombre, descripcion, precio, idProducto);
+
             int resultado;
             Respuesta respuesta = new Respuesta();
 
@@ -149,7 +166,8 @@ namespace InvestWiseProyecto.DataConnection
                     command.CommandType = CommandType.StoredProcedure;
 
                     // Agregar parámetros de entrada
-                    command.Parameters.Add(new SqlParameter("@idProducto", SqlDbType.Int)).Value = productoModi.idProducto;
+                    //command.Parameters.Add(new SqlParameter("@idProducto", SqlDbType.Int)).Value = productoModi.idProducto;
+                    command.Parameters.AddWithValue("@idProducto", ((ProductoModificado)productoModi).idProducto);
                     command.Parameters.Add(new SqlParameter("@idCategoria", SqlDbType.Int)).Value = productoModi.idCategoria;
                     command.Parameters.Add(new SqlParameter("@nombreProducto", SqlDbType.VarChar, 50)).Value = productoModi.nombreProducto;
                     command.Parameters.Add(new SqlParameter("@descripcionProducto", SqlDbType.VarChar, 50)).Value = productoModi.descripcionProducto;

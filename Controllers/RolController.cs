@@ -22,14 +22,7 @@ namespace InvestWiseProyecto.Controllers
         {
             return _rolService.ObtenerRol();
         }
-        //[HttpGet]
-        //[Route("ObtenerTodo")]
-        //public Respuesta ObtenerRol()
-        //{
-        //    RolConnection dbConexion = new RolConnection();
-        //    Respuesta res = dbConexion.ObtenerRol();
-        //    return res;
-        //}
+        
 
     }
 }
